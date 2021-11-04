@@ -2,6 +2,7 @@
 
 ## screen query methods:
 
+- getBy: default for getting element. If no element found - error
 - findBy vs getBy: findBy - can be used with async/await
 - findBy - good for testing scenarios, where http API calls are made (e.g. with axios)
 - queryBy vs getBy: findBy - if no match - it returns "null" instead of an error
