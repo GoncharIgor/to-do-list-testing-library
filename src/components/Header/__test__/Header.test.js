@@ -1,4 +1,4 @@
-// supports default test fine name pattern, as jest does: ComponentName.test.js
+// supports default test file name pattern, as jest does: ComponentName.test.js
 import { render, screen } from '@testing-library/react';
 import Header from '../Header';
 
