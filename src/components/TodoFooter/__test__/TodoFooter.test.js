@@ -50,8 +50,11 @@ describe('TodoFooter', () => {
         render(<MockTodoFooter numberOfIncompleteTasks={1} />);
         const paragraphElement = screen.getByTitle('number of left tasks');
 
-        // element.value - for <input> tag
+        // element.value - used only for <input> tag
         // element.textContent - for other text tags
-        expect(paragraphElement.textContent).toBe('1 task left');
+        // expect(paragraphElement.textContent).toBe('1 task left');
+
+        // new way:
+        expect(paragraphElement).toHaveTextContent('1 task left');
     });
 })

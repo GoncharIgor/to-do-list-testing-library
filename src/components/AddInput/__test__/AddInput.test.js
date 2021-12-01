@@ -1,18 +1,22 @@
-import {render, cleanup, screen, fireEvent} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import AddInput from '../AddInput';
 
 // jest mock f() that does nothing
 const mockSetTodos = jest.fn();
 
 // if you put this hook inside "describe", it will be executed only for tests inside this block
-afterEach(cleanup);
+// It's already done automatically by @testing-library
+// afterEach(cleanup);
 
 describe('AddInput', () => {
 
     test('should render input element', () => {
-        // we can desctucture "getByPlaceholderText" f() from render() f(), and not use "screen" object to call it
-        const { getByPlaceholderText } = render(<AddInput todos={[]} setTodos={mockSetTodos} />);
-        const inputElement = getByPlaceholderText(/add a new task here.../i);
+        // we can destructure "getByPlaceholderText" f() from render() f(), and not use "screen" object to call it
+        // but better to use .screen f()s
+        // const { getByPlaceholderText } = render(<AddInput todos={[]} setTodos={mockSetTodos} />);
+        render(<AddInput todos={[]} setTodos={mockSetTodos} />);
+        const inputElement = screen.getByPlaceholderText(/add a new task here.../i);
 
         expect(inputElement).toBeInTheDocument();
     });
@@ -20,7 +24,10 @@ describe('AddInput', () => {
     test('should be able to type in input', () => {
         render(<AddInput todos={[]} setTodos={mockSetTodos} />);
         const inputElement = screen.getByPlaceholderText(/add a new task here.../i);
-        fireEvent.change(inputElement, {target: {value: 'Go shopping'}});
+
+        // old way, with usage of "fireEvent"
+        // fireEvent.change(inputElement, {target: {value: 'Go shopping'}});
+        userEvent.type(inputElement, 'Go shopping');
 
         expect(inputElement.value).toBe('Go shopping');
     });
@@ -30,8 +37,8 @@ describe('AddInput', () => {
         const inputElement = screen.getByPlaceholderText(/add a new task here.../i);
         const buttonElement = screen.getByRole('button', {name: /add/i});
 
-        fireEvent.change(inputElement, {target: {value: 'Go shopping'}});
-        fireEvent.click(buttonElement);
+        userEvent.type(inputElement,  'Go shopping');
+        userEvent.click(buttonElement);
 
         expect(inputElement.value).toBe('');
     });

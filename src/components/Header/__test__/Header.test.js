@@ -62,6 +62,8 @@ describe('Header', () => {
         render(<Header title="My Header" />);
         const headingElements = screen.getAllByRole('heading');
 
-        expect(headingElements.length).toBe(1);
+        expect(headingElements).toHaveLength(1);
+        // instead of old way of checking array length:
+        // expect(headingElements.length).toBe(1);
     });
 });
