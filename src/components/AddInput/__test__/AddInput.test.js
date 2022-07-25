@@ -13,8 +13,8 @@ describe('AddInput', () => {
 
     test('should render input element', () => {
         // we can destructure "getByPlaceholderText" f() from render() f(), and not use "screen" object to call it
-        // but better to use .screen f()s
         // const { getByPlaceholderText } = render(<AddInput todos={[]} setTodos={mockSetTodos} />);
+        // but better to use .screen f()s
         render(<AddInput todos={[]} setTodos={mockSetTodos} />);
         const inputElement = screen.getByPlaceholderText(/add a new task here.../i);
 
