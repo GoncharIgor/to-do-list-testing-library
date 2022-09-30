@@ -52,3 +52,13 @@ render(<OrderComponent order={testOrder} />, {
     container: document.body.appendChild(tableRow)
 });
 ```
+
+
+## Jest
+jest.fn() - mock a f()
+jest.mock() - mock a whole module
+
+e.g.:
+```javascript
+jest.mock('axios');
+```
